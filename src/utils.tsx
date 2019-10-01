@@ -12,3 +12,22 @@ export const validateInputValue = (value: IInputValue): IErrors => {
   }
   return errors;
 };
+
+export const emailAddressSuggestions = (
+  term: string,
+  list: string[]
+): string[] => {
+  if (term === "") {
+    return [];
+  }
+  if (term.indexOf("@") === -1) {
+    return list.map(listItem => term + "@" + listItem);
+  }
+  const localPartSearch = term.split("@").shift() || "";
+  const domainSearch = term.split("@").pop() || "";
+  return list
+    .filter((listItem: string) =>
+      new RegExp(`${domainSearch}`, "gi").test(listItem)
+    )
+    .map(domainMatches => localPartSearch + "@" + domainMatches);
+};

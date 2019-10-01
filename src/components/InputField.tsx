@@ -2,7 +2,7 @@ import React from "react";
 import useInputValidation from "../hooks/useInputValidation";
 import { validateInputValue } from "../utils";
 import { emailDomains } from "../constants";
-import SuggestionList from "./SuggestionList";
+import SuggestionsList from "./SuggestionsList";
 
 interface Props {
   label: string;
@@ -26,7 +26,10 @@ const InputField: React.FC<Props> = ({ name, label, placeholder }) => {
         onChange={handleChange}
       />
       {errors.email && <div>Invalid email address.</div>}
-      <SuggestionList term={value.email} list={emailDomains}></SuggestionList>
+      <SuggestionsList
+        term={value.email || ""}
+        list={emailDomains}
+      ></SuggestionsList>
     </div>
   );
 };
