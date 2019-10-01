@@ -19,11 +19,8 @@ export const emailAddressSuggestions = (
   term: string,
   list: string[]
 ): string[] => {
-  if (term === "") {
-    return [];
-  }
   if (term.indexOf("@") === -1) {
-    return list.map(listItem => term + "@" + listItem);
+    return [];
   }
   const localPartSearch = term.split("@").shift() || "";
   const domainSearch = term.split("@").pop() || "";

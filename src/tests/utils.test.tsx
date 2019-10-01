@@ -51,8 +51,7 @@ describe("utility methods", () => {
 
       const searchTerm3 = "p";
       const suggestionsArray3 = emailAddressSuggestions(searchTerm3, domains);
-      const expectedArray3 = emailDomains.map(val => "p@" + val);
-      expect(suggestionsArray3.sort()).toEqual(expectedArray3.sort());
+      expect(suggestionsArray3.sort()).toEqual([]);
     });
   });
 
