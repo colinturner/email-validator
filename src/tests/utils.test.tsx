@@ -1,5 +1,11 @@
-import { isEmailValid, emailAddressSuggestions } from "../utils";
+import {
+  isEmailValid,
+  emailAddressSuggestions,
+  generateListItemsFrom
+} from "../utils";
 import { emailDomains } from "../constants";
+import ListItem from "../components/ListItem";
+import React from "react";
 
 describe("utility methods", () => {
   describe("isEmailValid", () => {
@@ -47,6 +53,16 @@ describe("utility methods", () => {
       const suggestionsArray3 = emailAddressSuggestions(searchTerm3, domains);
       const expectedArray3 = emailDomains.map(val => "p@" + val);
       expect(suggestionsArray3.sort()).toEqual(expectedArray3.sort());
+    });
+  });
+
+  describe("generateListItemsFrom", () => {
+    it("should generate ListItems from given list", () => {
+      const suggestionsArray = ["paul@googlemail.com", "paul@google.com"];
+      expect(generateListItemsFrom(suggestionsArray)).toEqual([
+        <ListItem key={"paul@googlemail.com"} item={"paul@googlemail.com"} />,
+        <ListItem key={"paul@google.com"} item={"paul@google.com"} />
+      ]);
     });
   });
 });
