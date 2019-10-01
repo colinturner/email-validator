@@ -18,7 +18,7 @@ const InputField: React.FC<Props> = ({ name, label, placeholder }) => {
       <p>{label}</p>
       <input
         name={name}
-        value={value.email}
+        value={value.email || ""}
         type="email"
         placeholder={placeholder}
         onChange={handleChange}
