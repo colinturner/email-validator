@@ -3,7 +3,8 @@ import {
   emailAddressSuggestions,
   generateListItemsFrom,
   createDomainRegExpFrom,
-  domainMatchesFromSearch
+  domainMatchesFromSearch,
+  createEmailAddressSuggestionsFrom
 } from "../utils";
 import { emailDomains } from "../constants";
 import ListItem from "../components/ListItem";
@@ -43,6 +44,29 @@ describe("utility methods", () => {
           "yahoo.co.kr",
           "yahoo.co.id",
           "yahoo.co.in"
+        ].sort()
+      );
+    });
+  });
+
+  describe("createEmailAddressSuggestionsFrom", () => {
+    it("creates array of suggested email addresses", () => {
+      const username = "paul";
+      const list = [
+        "yahoo.co.uk",
+        "yahoo.co.jp",
+        "yahoo.co.kr",
+        "yahoo.co.id",
+        "yahoo.co.in"
+      ];
+      const suggestedEmails = createEmailAddressSuggestionsFrom(username, list);
+      expect(suggestedEmails.sort()).toEqual(
+        [
+          "paul@yahoo.co.uk",
+          "paul@yahoo.co.jp",
+          "paul@yahoo.co.kr",
+          "paul@yahoo.co.id",
+          "paul@yahoo.co.in"
         ].sort()
       );
     });

@@ -25,6 +25,11 @@ export const createDomainRegExpFrom = (term: string): RegExp => {
 export const domainMatchesFromSearch = (regExp: RegExp, list: string[]) =>
   list.filter((listItem: string) => regExp.test(listItem));
 
+export const createEmailAddressSuggestionsFrom = (
+  username: string,
+  list: string[]
+) => list.map(domainMatch => username + "@" + domainMatch);
+
 export const emailAddressSuggestions = (
   term: string,
   list: string[]
@@ -33,9 +38,10 @@ export const emailAddressSuggestions = (
     return [];
   }
   const regExp = createDomainRegExpFrom(term);
-  const userName = term.split("@").shift() || ""; // e.g. "paul" from "paul@yahoo.co.uk"
-  return domainMatchesFromSearch(regExp, list).map(
-    domainMatch => userName + "@" + domainMatch
+  const username = term.split("@").shift() || ""; // e.g. "paul" from "paul@yahoo.co.uk"
+  return createEmailAddressSuggestionsFrom(
+    username,
+    domainMatchesFromSearch(regExp, list)
   );
 };
 
