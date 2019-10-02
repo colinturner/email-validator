@@ -15,6 +15,16 @@ export const validateInputValue = (value: IInputValue): IErrors => {
   return errors;
 };
 
+export const createDomainRegExpFrom = (term: string): RegExp => {
+  const domain = term.split("@").pop() || ""; // e.g. "yahoo.co.uk"
+  const domainRegExpFormatted = domain.split(".").join("\\."); // e.g. "yahoo\\.co\\.uk"
+
+  return new RegExp(`${"^" + domainRegExpFormatted}`);
+};
+
+export const domainMatchesFromSearch = (regExp: RegExp, list: string[]) =>
+  list.filter((listItem: string) => regExp.test(listItem));
+
 export const emailAddressSuggestions = (
   term: string,
   list: string[]
@@ -22,13 +32,11 @@ export const emailAddressSuggestions = (
   if (term.indexOf("@") === -1) {
     return [];
   }
-  const localPartSearch = term.split("@").shift() || "";
-  const domainSearch = term.split("@").pop() || "";
-  return list
-    .filter((listItem: string) =>
-      new RegExp(`${domainSearch}`, "gi").test(listItem)
-    )
-    .map(domainMatches => localPartSearch + "@" + domainMatches);
+  const regExp = createDomainRegExpFrom(term);
+  const userName = term.split("@").shift() || ""; // e.g. "paul" from "paul@yahoo.co.uk"
+  return domainMatchesFromSearch(regExp, list).map(
+    domainMatch => userName + "@" + domainMatch
+  );
 };
 
 export const generateListItemsFrom = (list: string[]) =>

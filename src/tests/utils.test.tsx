@@ -1,7 +1,9 @@
 import {
   isEmailValid,
   emailAddressSuggestions,
-  generateListItemsFrom
+  generateListItemsFrom,
+  createDomainRegExpFrom,
+  domainMatchesFromSearch
 } from "../utils";
 import { emailDomains } from "../constants";
 import ListItem from "../components/ListItem";
@@ -29,6 +31,31 @@ describe("utility methods", () => {
     });
   });
 
+  describe("domainMatchesFromSearch", () => {
+    it("creates new array with only the domains that match the search term", () => {
+      const list = emailDomains;
+      const regExp = /^yahoo\.co\./;
+      const filteredArray = domainMatchesFromSearch(regExp, list);
+      expect(filteredArray.sort()).toEqual(
+        [
+          "yahoo.co.uk",
+          "yahoo.co.jp",
+          "yahoo.co.kr",
+          "yahoo.co.id",
+          "yahoo.co.in"
+        ].sort()
+      );
+    });
+  });
+
+  describe("createDomainRegExpFrom", () => {
+    it("generates a RegExp that matches the domain section from an email address", () => {
+      const emailAddress = "paul@yahoo.co.";
+      const regExp = createDomainRegExpFrom(emailAddress);
+      expect(regExp).toEqual(new RegExp("^yahoo\\.co\\."));
+    });
+  });
+
   describe("emailAddressSuggestions", () => {
     it("returns an array suggesting possible email addresses", () => {
       const searchTerm = "paul@gm";
@@ -39,7 +66,6 @@ describe("utility methods", () => {
           "paul@gmail.com",
           "paul@gmx.com",
           "paul@gmx.net",
-          "paul@ygm.com",
           "paul@gmx.fr",
           "paul@gmx.de"
         ].sort()
@@ -52,6 +78,18 @@ describe("utility methods", () => {
       const searchTerm3 = "p";
       const suggestionsArray3 = emailAddressSuggestions(searchTerm3, domains);
       expect(suggestionsArray3.sort()).toEqual([]);
+
+      const searchTerm4 = "paul@yahoo.co.";
+      const suggestionsArray4 = emailAddressSuggestions(searchTerm4, domains);
+      expect(suggestionsArray4.sort()).toEqual(
+        [
+          "paul@yahoo.co.uk",
+          "paul@yahoo.co.jp",
+          "paul@yahoo.co.kr",
+          "paul@yahoo.co.id",
+          "paul@yahoo.co.in"
+        ].sort()
+      );
     });
   });
 
