@@ -44,6 +44,26 @@ describe("utility methods", () => {
       const errors = validateInputValue("email", value);
       expect(errors.email).toEqual("Don't forget the domain (e.g. gmail.com)");
     });
+    it(`sets email error message to 'Just missing the last part now (e.g. something like ".com")'`, () => {
+      const value = "paul@g";
+      const errors = validateInputValue("email", value);
+      expect(errors.email).toEqual(
+        'Just missing the last part now (e.g. something like ".com")'
+      );
+    });
+    it(`sets email error message to 'This last part needs to be at least two characters long (e.g. ".ca")'`, () => {
+      const value = "paul@gmail.c";
+      const errors = validateInputValue("email", value);
+      expect(errors.email).toEqual(
+        'This last part needs to be at least two characters long (e.g. ".ca")'
+      );
+
+      const value1 = "paul@gmail.c";
+      const errors2 = validateInputValue("email", value1);
+      expect(errors2.email).toEqual(
+        'This last part needs to be at least two characters long (e.g. ".ca")'
+      );
+    });
   });
 
   describe("domainMatchesFromSearch", () => {
