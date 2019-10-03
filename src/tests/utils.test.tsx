@@ -104,6 +104,12 @@ describe("utility methods", () => {
         ].sort()
       );
     });
+    it("returns an empty array if only one domainMatch in given list", () => {
+      const username = "paul@gmail.com";
+      const list = ["gmail.com"];
+      const suggestedEmails = createEmailAddressSuggestionsFrom(username, list);
+      expect(suggestedEmails).toEqual([]);
+    });
   });
 
   describe("createDomainRegExpFrom", () => {

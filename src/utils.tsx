@@ -53,7 +53,12 @@ export const domainMatchesFromSearch = (regExp: RegExp, list: string[]) =>
 export const createEmailAddressSuggestionsFrom = (
   username: string | undefined = "",
   list: string[]
-) => list.map(domainMatch => username + "@" + domainMatch);
+) => {
+  if (list.length === 1) {
+    return [];
+  }
+  return list.map(domainMatch => username + "@" + domainMatch);
+};
 
 export const emailAddressSuggestions = (
   term: string,
