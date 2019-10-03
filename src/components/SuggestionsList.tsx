@@ -2,7 +2,7 @@ import React from "react";
 import { emailAddressSuggestions, generateListItemsFrom } from "../utils";
 
 interface Props {
-  term: string;
+  term: string | undefined;
   list: string[];
 }
 
