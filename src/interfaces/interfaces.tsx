@@ -1,5 +1,5 @@
 export interface IErrors {
-  email?: string;
+  [email: string]: string;
 }
 
 export interface IInputValue {

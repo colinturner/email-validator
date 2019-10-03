@@ -25,7 +25,7 @@ const InputField: React.FC<Props> = ({ name, label, placeholder }) => {
         placeholder={placeholder}
         onChange={handleChange}
       />
-      {errors.email && <div>Invalid email address.</div>}
+      {errors.email && <div>{errors.email}</div>}
       <SuggestionsList term={value.email || ""} list={emailDomains} />
     </div>
   );

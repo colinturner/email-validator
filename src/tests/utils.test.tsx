@@ -4,7 +4,8 @@ import {
   generateListItemsFrom,
   createDomainRegExpFrom,
   domainMatchesFromSearch,
-  createEmailAddressSuggestionsFrom
+  createEmailAddressSuggestionsFrom,
+  validateInputValue
 } from "../utils";
 import { emailDomains } from "../constants";
 import ListItem from "../components/ListItem";
@@ -29,6 +30,19 @@ describe("utility methods", () => {
       invalidAttempts.forEach(attempt =>
         expect(isEmailValid(attempt)).toBe(false)
       );
+    });
+  });
+
+  describe("validateInputValue", () => {
+    it("sets email error message to 'Looks like you're missing the @ symbol' when missing '@'", () => {
+      const value = "paul";
+      const errors = validateInputValue("email", value);
+      expect(errors.email).toEqual("Looks like you're missing the @ symbol");
+    });
+    it(`sets email error message to "Don't forget the domain (e.g. gmail.com)"`, () => {
+      const value = "paul@";
+      const errors = validateInputValue("email", value);
+      expect(errors.email).toEqual("Don't forget the domain (e.g. gmail.com)");
     });
   });
 

@@ -1,4 +1,4 @@
-import { IErrors, IInputValue } from "./interfaces/interfaces";
+import { IErrors } from "./interfaces/interfaces";
 import React from "react";
 import ListItem from "./components/ListItem";
 
@@ -7,11 +7,19 @@ export const isEmailValid = (email: string | undefined): boolean => {
   return emailRegex.test(email || "");
 };
 
-export const validateInputValue = (value: IInputValue): IErrors => {
+export const validateInputValue = (target: string, value: string): IErrors => {
   let errors: IErrors = {};
-  if (!isEmailValid(value.email)) {
-    errors.email = "Invalid email address.";
+  if (value.indexOf("@") === -1) {
+    errors[target] = "Looks like you're missing the @ symbol";
+    return errors;
   }
+  if (value.slice(-1) === "@") {
+    errors[target] = "Don't forget the domain (e.g. gmail.com)";
+    return errors;
+  }
+  // if (!isEmailValid(value.email)) {
+  //   errors.email = "Invalid email address.";
+  // }
   return errors;
 };
 
