@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import useInputValidation from "../hooks/useInputValidation";
-import { validateInputValue, isEmailValid } from "../utilities/utils";
+import { validateInputValue } from "../utilities/utils";
 import { emailDomains } from "../constants";
 import SuggestionsList from "./SuggestionsList";
-import { verifyEmail } from "../utilities/api";
-import useDebounce from "../hooks/useDebounce";
 import KickboxResults from "./KickboxResults";
+import InputErrors from "./InputErrors";
 
 interface Props {
   label: string;
@@ -28,7 +27,7 @@ const InputField: React.FC<Props> = ({ name, label, placeholder }) => {
         placeholder={placeholder}
         onChange={handleChange}
       />
-      {value.email && errors.email && <div>{errors.email}</div>}
+      <InputErrors email={value.email} errors={errors}></InputErrors>
       <KickboxResults email={value.email}></KickboxResults>
       <SuggestionsList term={value.email} list={emailDomains} />
     </div>

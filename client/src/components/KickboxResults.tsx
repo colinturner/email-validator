@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { KickboxResponse } from "../interfaces/interfaces";
 import useDebounce from "../hooks/useDebounce";
 import { isEmailValid } from "../utilities/utils";
 import { verifyEmail } from "../utilities/api";
@@ -26,8 +25,7 @@ const KickboxResults: React.FC<Props> = ({ email = "" }) => {
   }, [debouncedSearchTerm]);
   return (
     <>
-      <div>{isVerifying && "Checking email..."}</div>
-      <div>{!!kickboxResults.result && kickboxResults.result}</div>
+      <div>{isVerifying ? "Checking email..." : kickboxResults.result}</div>
     </>
   );
 };
