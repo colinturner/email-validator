@@ -5,6 +5,7 @@ import { emailDomains } from "../constants";
 import SuggestionsList from "./SuggestionsList";
 import { verifyEmail } from "../utilities/api";
 import useDebounce from "../hooks/useDebounce";
+import KickboxResults from "./KickboxResults";
 
 interface Props {
   label: string;
@@ -16,22 +17,6 @@ const InputField: React.FC<Props> = ({ name, label, placeholder }) => {
   const { handleChange, value, errors } = useInputValidation(
     validateInputValue
   );
-  const [isVerifying, setIsVerifying] = useState(false);
-  const [kickboxResults, setKickboxResults] = useState([]);
-  const debouncedSearchTerm = useDebounce(value.email, 500);
-
-  useEffect(() => {
-    if (isEmailValid(value.email)) {
-      setIsVerifying(true);
-      verifyEmail(debouncedSearchTerm).then((results: any) => {
-        //remove 'any' typing
-        setIsVerifying(false);
-        setKickboxResults(results);
-      });
-    } else {
-      setKickboxResults([]);
-    }
-  }, [debouncedSearchTerm]);
 
   return (
     <div>
@@ -44,6 +29,7 @@ const InputField: React.FC<Props> = ({ name, label, placeholder }) => {
         onChange={handleChange}
       />
       {value.email && errors.email && <div>{errors.email}</div>}
+      <KickboxResults email={value.email}></KickboxResults>
       <SuggestionsList term={value.email} list={emailDomains} />
     </div>
   );
