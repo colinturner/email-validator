@@ -1,11 +1,17 @@
 import React from "react";
+import styled from "styled-components";
 
 interface Props {
   item: string;
 }
 
+const Item = styled.div`
+  font-family: Raleway;
+  cursor: pointer;
+`;
+
 const ListItem: React.FC<Props> = ({ item }) => {
-  return <div>{item}</div>;
+  return <Item>{item}</Item>;
 };
 
 export default ListItem;
