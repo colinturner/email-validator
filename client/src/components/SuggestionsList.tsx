@@ -1,5 +1,8 @@
 import React from "react";
-import { emailAddressSuggestions, generateListItemsFrom } from "../utils";
+import {
+  emailAddressSuggestions,
+  generateListItemsFrom
+} from "../utilities/utils";
 
 interface Props {
   term: string | undefined;

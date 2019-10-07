@@ -6,7 +6,7 @@ import {
   domainMatchesFromSearch,
   createEmailAddressSuggestionsFrom,
   validateInputValue
-} from "../utils";
+} from "../utilities/utils";
 import { emailDomains } from "../constants";
 import ListItem from "../components/ListItem";
 import React from "react";

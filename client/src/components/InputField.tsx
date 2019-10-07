@@ -1,6 +1,6 @@
 import React from "react";
 import useInputValidation from "../hooks/useInputValidation";
-import { validateInputValue } from "../utils";
+import { validateInputValue } from "../utilities/utils";
 import { emailDomains } from "../constants";
 import SuggestionsList from "./SuggestionsList";
 
