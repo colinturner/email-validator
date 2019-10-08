@@ -16,11 +16,7 @@ const Div = styled.div`
 `;
 
 const InputErrors: React.FC<Props> = ({ email = "", errors }) => {
-  return (
-    <>
-      <Div>{email && errors.email && <div>{errors.email}</div>}</Div>
-    </>
-  );
+  return <>{email && errors.email && <Div>{errors.email}</Div>}</>;
 };
 
 export default InputErrors;
