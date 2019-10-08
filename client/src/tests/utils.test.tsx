@@ -1,7 +1,6 @@
 import {
   isEmailValid,
   emailAddressSuggestions,
-  generateListItemsFrom,
   createDomainRegExpFrom,
   domainMatchesFromSearch,
   createEmailAddressSuggestionsFrom,
@@ -154,16 +153,6 @@ describe("utility methods", () => {
           "paul@yahoo.co.in"
         ].sort()
       );
-    });
-  });
-
-  describe("generateListItemsFrom", () => {
-    it("should generate ListItems from given list", () => {
-      const suggestionsArray = ["paul@googlemail.com", "paul@google.com"];
-      expect(generateListItemsFrom(suggestionsArray)).toEqual([
-        <ListItem key={"paul@googlemail.com"} item={"paul@googlemail.com"} />,
-        <ListItem key={"paul@google.com"} item={"paul@google.com"} />
-      ]);
     });
   });
 });

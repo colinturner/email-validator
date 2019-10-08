@@ -16,7 +16,18 @@ function useInputValidation<T>(
     setErrors(errors);
   };
 
-  return { handleChange, value, errors };
+  const handleClick = (
+    event: React.MouseEvent<HTMLInputElement, MouseEvent>
+  ) => {
+    setValue({
+      ...value,
+      email: event.currentTarget.textContent || ""
+    });
+    const errors = validate("email", event.currentTarget.textContent || "");
+    setErrors(errors);
+  };
+
+  return { handleChange, handleClick, value, errors };
 }
 
 export default useInputValidation;

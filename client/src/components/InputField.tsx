@@ -44,7 +44,7 @@ const EmailInput = styled.input`
 `;
 
 const InputField: React.FC<Props> = ({ name, label, placeholder }) => {
-  const { handleChange, value, errors } = useInputValidation(
+  const { handleChange, handleClick, value, errors } = useInputValidation(
     validateInputValue
   );
 
@@ -60,7 +60,11 @@ const InputField: React.FC<Props> = ({ name, label, placeholder }) => {
       />
       <InputErrors email={value.email} errors={errors} />
       <KickboxResults email={value.email} />
-      <SuggestionsList term={value.email} list={emailDomains} />
+      <SuggestionsList
+        term={value.email}
+        list={emailDomains}
+        handleClick={handleClick}
+      />
     </>
   );
 };

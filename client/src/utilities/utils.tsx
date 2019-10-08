@@ -18,7 +18,10 @@ export const lastCharacterIs = (str: string, char: string) =>
 export const getDomainString = (str: string | undefined = "") =>
   str.split("@").pop();
 
-export const validateInputValue = (target: string, value: string): IErrors => {
+export const validateInputValue = (
+  target: string,
+  value: string = ""
+): IErrors => {
   let errors: IErrors = {};
   if (doesNotContainCharacter(value, "@")) {
     errors[target] = "Looks like you're missing the @ symbol";
@@ -74,6 +77,3 @@ export const emailAddressSuggestions = (
     domainMatchesFromSearch(regExp, list)
   );
 };
-
-export const generateListItemsFrom = (list: string[]) =>
-  list.map(listItem => <ListItem key={listItem} item={listItem} />);

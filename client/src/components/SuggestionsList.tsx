@@ -1,13 +1,11 @@
 import React from "react";
-import {
-  emailAddressSuggestions,
-  generateListItemsFrom
-} from "../utilities/utils";
+import { emailAddressSuggestions } from "../utilities/utils";
 import styled from "styled-components";
 
 interface Props {
   term: string | undefined;
   list: string[];
+  handleClick: (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
 }
 
 const Instructions = styled.div`
@@ -25,13 +23,22 @@ const ListContainer = styled.div`
   padding: 0px 20px;
 `;
 
-const SuggestionsList: React.FC<Props> = ({ term = "", list }) => (
+const Item = styled.div`
+  font-family: Raleway;
+  cursor: pointer;
+`;
+
+const SuggestionsList: React.FC<Props> = ({ term = "", list, handleClick }) => (
   <>
     {!!emailAddressSuggestions(term, list).length && (
       <Instructions>Scroll down this list for more suggestions</Instructions>
     )}
     <ListContainer>
-      {generateListItemsFrom(emailAddressSuggestions(term, list))}
+      {emailAddressSuggestions(term, list).map(listItem => (
+        <Item key={listItem} onClick={handleClick}>
+          {listItem}
+        </Item>
+      ))}
     </ListContainer>
   </>
 );
