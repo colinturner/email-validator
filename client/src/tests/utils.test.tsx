@@ -7,8 +7,6 @@ import {
   validateInputValue
 } from "../utilities/utils";
 import { emailDomains } from "../constants";
-import ListItem from "../components/ListItem";
-import React from "react";
 
 describe("utility methods", () => {
   describe("isEmailValid", () => {
