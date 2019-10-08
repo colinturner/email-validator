@@ -9,6 +9,10 @@ interface Props {
 
 const Div = styled.div`
   cursor: default;
+  color: darkred;
+  background: rgb(255, 255, 255, 0.15);
+  padding: 3px;
+  border-radius: 4px;
 `;
 
 const InputErrors: React.FC<Props> = ({ email = "", errors }) => {

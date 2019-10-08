@@ -58,8 +58,8 @@ const InputField: React.FC<Props> = ({ name, label, placeholder }) => {
         placeholder={placeholder}
         onChange={handleChange}
       />
-      <InputErrors email={value.email} errors={errors}></InputErrors>
-      <KickboxResults email={value.email}></KickboxResults>
+      <InputErrors email={value.email} errors={errors} />
+      <KickboxResults email={value.email} />
       <SuggestionsList term={value.email} list={emailDomains} />
     </>
   );
