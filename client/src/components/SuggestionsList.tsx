@@ -22,6 +22,7 @@ const ListContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0px 20px;
 `;
 
 const SuggestionsList: React.FC<Props> = ({ term = "", list }) => (
