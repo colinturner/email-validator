@@ -24,7 +24,7 @@ This project has plenty of unit tests to verify that everything works as it shou
 
 ## Notes on Kickbox API
 
-The Kickbox API only allows a limited number of email verifications under the free plan (which this project uses). If the web app exceeds the free quota, change the API key to the Sandbox key. In **index.js** (in the project's root) on Line 6, comment out the Production API key and uncomment the Sandbox API key. The web app will then still work, but the Kickbox API will return dummy Sandbox results - essentially any email will then be deemed deliverable.
+The Kickbox API only allows a limited number of email verifications under the free plan (which this project uses). If the web app exceeds the free quota, change the API key to the Sandbox key. In **index.js** (in the project's root) on Lines 6 and 7, comment out the Production API key and uncomment the Sandbox API key. The web app will then still work, but the Kickbox API will return dummy Sandbox results - essentially any email will then be deemed deliverable.
 
 ## Other notes
 
