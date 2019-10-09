@@ -3,6 +3,7 @@ import useDebounce from "../hooks/useDebounce";
 import { isEmailValid } from "../utilities/utils";
 import { verifyEmail } from "../utilities/api";
 import { KickboxResponse } from "../interfaces/interfaces";
+import styled from "styled-components";
 
 interface Props {
   email: string | undefined;
@@ -37,13 +38,24 @@ const KickboxResults: React.FC<Props> = ({ email = "" }) => {
       setKickboxResults({ result: "" });
     }
   }, [debouncedSearchTerm]);
+
+  const Green = styled.div`
+    cursor: default;
+    color: #20631a;
+    background: rgb(255, 255, 255, 0.15);
+    padding: 3px;
+    border-radius: 4px;
+  `;
+
   return (
     <>
-      <div>
-        {isVerifying
-          ? "Checking email..."
-          : formatKickboxMessage(kickboxResults)}
-      </div>
+      {isVerifying ? (
+        <div>"Checking email..."</div>
+      ) : (
+        formatKickboxMessage(kickboxResults) && (
+          <Green>{formatKickboxMessage(kickboxResults)}</Green>
+        )
+      )}
     </>
   );
 };
