@@ -28,6 +28,7 @@ const Item = styled.div`
   cursor: pointer;
 `;
 
+// Generate email address suggestions. Each suggestion is called an 'Item',
 const SuggestionsList: React.FC<Props> = ({ term = "", list, handleClick }) => (
   <>
     {!!emailAddressSuggestions(term, list).length && (

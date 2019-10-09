@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 
+// Custom hook for updating a value if a certain amount of "debounce time" has passed.
 export default function useDebounce(
   value: string | undefined = "",
   delay: number

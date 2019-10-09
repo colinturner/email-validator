@@ -44,10 +44,12 @@ const EmailInput = styled.input`
 `;
 
 const InputField: React.FC<Props> = ({ name, label, placeholder }) => {
+  // Use a custom hook called useInputValidation to deal with state in this functional component. Imported at top of file.
   const { handleChange, handleClick, value, errors } = useInputValidation(
     validateInputValue
   );
 
+  // Return markup with a label, input field, error messages, and suggestions
   return (
     <>
       <Label>Enter your {label}</Label>

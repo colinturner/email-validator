@@ -1,3 +1,5 @@
+// List of alphabetically-sorted common email domains
+
 export const emailDomains = [
   "alice.it",
   "aliyun.com",

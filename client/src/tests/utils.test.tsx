@@ -18,7 +18,7 @@ describe("utility methods", () => {
       ];
       const invalidAttempts = [
         "albus",
-        "voldy@needsattention",
+        "voldemort@needsattention",
         "crookshanks123@petshop."
       ];
       validAttempts.forEach(attempt =>

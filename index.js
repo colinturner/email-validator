@@ -10,9 +10,11 @@ const fetch = require("node-fetch");
 const kickboxApiKey =
   "test_a511dfec549e3d818548240452682dfd9df63cd9035d906de9897e1d6321042c";
 
+// Intialize server
 const app = express();
 app.use(express.static(path.join(__dirname, "client/build")));
 
+// Set up endpoint to receive frontend email param for the Kickbox API request. Use node-fetch to communicate with Kickbox.
 app.get("/verify-email/:email", async (req, res) => {
   const email = req.params.email;
   const api_url = `https://api.kickbox.com/v2/verify?email=${email}&apikey=${kickboxApiKey}`;
@@ -21,6 +23,7 @@ app.get("/verify-email/:email", async (req, res) => {
   res.json(json);
 });
 
+// If frontend tries to hit any other endpoint, send back an error message
 app.get("*", (req, res) => {
   res.json("Invalid request! Please try again.");
 });

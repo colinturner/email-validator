@@ -27,6 +27,7 @@ const KickboxResults: React.FC<Props> = ({ email = "" }) => {
   const [kickboxResults, setKickboxResults] = useState({ result: "" });
   const debouncedSearchTerm = useDebounce(email, 500);
 
+  // Verify email with Kickbox every time the email address changes (with client-side validation and a debounce implemented to prevent multiple rapid-fire API requests)
   useEffect(() => {
     if (isEmailValid(email)) {
       setIsVerifying(true);
@@ -47,6 +48,7 @@ const KickboxResults: React.FC<Props> = ({ email = "" }) => {
     border-radius: 4px;
   `;
 
+  // Render the response from Kickbox
   return (
     <>
       {isVerifying ? (

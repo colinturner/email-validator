@@ -1,3 +1,4 @@
+// Make request to node.js server. Send email param.
 export const verifyEmail = async (email: string) => {
   const api_url = `/verify-email/${email}`;
   const response = await fetch(api_url);
