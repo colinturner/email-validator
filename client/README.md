@@ -1,44 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Email Validator
 
-## Available Scripts
+## Overview
 
-In the project directory, you can run:
+This project consists of an input field where a user can validate that an email address is deliverable. This input field is smart and can nudge the user in the right direction with feedback if the user goes off-track while inputting their email address.
 
-### `npm start`
+Additionally, the input field provides autocomplete suggestions as the user types. At any point, the user can click on one of those suggestions and the input field will autofill.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Once a valid-format email address has been entered, the web app uses the Kickbox API to verify that the email is in fact deliverable and provides feedback to that effect.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Getting started
 
-### `npm test`
+1. Navigate to the root directory. Run `npm i` and then `npm start`. This will install necessary packages and then kick off a simple server that handles the Kickbox API requests.
+2. Open a new Terminal window and navigate inside the _client/_ folder. This is where the frontend (React) project lives. Again, run `npm i` and then `npm start`.
+3. Open a browser and navigate to [http://localhost:3000](http://localhost:3000)
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Using the email validator
 
-### `npm run build`
+Type an email address into the input field. The validator will hint you towards a valid email format and present clickable suggestions. Once you've entered an email address with a valid format, the web app will verify that email's deliverability with the Kickbox API.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tests
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+This project has plenty of unit tests to verify that everything works as it should. Run `npm test` in the _client_ directory to run those tests. There are 11 tests - if they don't all immediately run after `npm test`, then press `a` to run all tests again.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Notes on Kickbox API
 
-### `npm run eject`
+The Kickbox API only allows a limited number of email verifications under the free plan (which this project uses). If the web app exceeds the free quota, change the API key to the Sandbox key. In **index.js** on line 6, comment out the Production API key and uncomment the Sandbox API key. The web app will then still work, but the Kickbox API will return dummy Sandbox results.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Other notes
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. This project utilizes only functional components as they are cleaner, lighter, easier to reason about (and are generally the future of React).
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+2. For state in functional components, custom hooks are utilized. See them in the _client/src/hooks_ directory.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+3. The styled-components library was used for most styling as it keeps styles together with the components they modify, and prevents class name clashes between unrelated components.
 
-## Learn More
+4. Re-usable functions are held in _client/src/utilities_ folder.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Enjoy validating emails!
