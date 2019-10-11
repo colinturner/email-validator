@@ -2,13 +2,9 @@ const express = require("express");
 const path = require("path");
 const fetch = require("node-fetch");
 
-// Production API Key - use with caution!
-const kickboxApiKey =
-  "live_eea123b73ff684eaa319d905e4cf4ed2a5e7c339dedb78dc10ee6aafb59572c5";
-
 // Sandbox API Key - throw caution to the wind!
-// const kickboxApiKey =
-//   "test_a511dfec549e3d818548240452682dfd9df63cd9035d906de9897e1d6321042c";
+const kickboxApiKey =
+  "test_a511dfec549e3d818548240452682dfd9df63cd9035d906de9897e1d6321042c";
 
 // Intialize server
 const app = express();
