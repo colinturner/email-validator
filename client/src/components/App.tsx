@@ -16,6 +16,11 @@ const Container = styled.div`
   padding: 20px;
 `;
 
+const SandboxNote = styled.div`
+  font-size: 13px;
+  margin-top: 30px;
+`
+
 const App: React.FC = () => {
   return (
     <Container>
@@ -24,6 +29,9 @@ const App: React.FC = () => {
         label="email address"
         placeholder="ronald_weasley@hogwarts.com"
       />
+      <SandboxNote>
+        *Note: this proof-of-concept app uses the free trial version of the <a href="https://kickbox.com/" target="_blank">Kickbox API</a> to verify email addresses. It only tests the integration with Kickbox. All email addresses will return as deliverable, whether or not they actually are.
+      </SandboxNote>
     </Container>
   );
 };

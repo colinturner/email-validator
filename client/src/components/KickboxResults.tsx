@@ -52,7 +52,7 @@ const KickboxResults: React.FC<Props> = ({ email = "" }) => {
   return (
     <>
       {isVerifying ? (
-        <div>"Checking email..."</div>
+        <div>Checking email...</div>
       ) : (
         formatKickboxMessage(kickboxResults) && (
           <Green>{formatKickboxMessage(kickboxResults)}</Green>
